@@ -17,3 +17,9 @@ variable "log_group_subscriptions" {
 variable "tags" {
   type = map(string)
 }
+
+variable "common_attributes" {
+  type        = map(string)
+  description = "Describes the metadata sent to the HTTP endpoint destination."
+  default = {}
+}
