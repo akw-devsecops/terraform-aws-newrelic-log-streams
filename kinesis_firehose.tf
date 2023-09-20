@@ -14,6 +14,17 @@ resource "aws_kinesis_firehose_delivery_stream" "newrelic_log_stream" {
 
     request_configuration {
       content_encoding = "GZIP"
+
+
+      dynamic "common_attributes" {
+        for_each = var.common_attributes
+        
+        content {
+          name  = common_attributes.key
+          value = common_attributes.value
+        }
+      }
+
     }
 
     s3_configuration {
